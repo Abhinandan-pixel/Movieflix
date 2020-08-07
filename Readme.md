@@ -3,10 +3,12 @@
 ## Notice
 All the resources used in the project are IMDB,Youtube's property and all its rights are reserved to them.
 
+## Visuals
+
 <p>
-    <img src="GIFs\Movies-Google-Chrome-2020-08-07.gif" style="width:1000px;margin-bottom:50px;"> 
-    <img src="GIFS\Movies-Google-Chrome-2020-08-07 (1).gif" style="width:1000px;margin-bottom:50px;">
-    <img src="GIFS\Movies-Google-Chrome-2020-08-07 (2).gif" style="width:1000px;">
+    <img src="GIFs\Movies-Google-Chrome-2020-08-07.gif"/> 
+    <img src="GIFs\Movies-Google-Chrome-2020-08-07 (1).gif"/>
+    <img src="GIFs\Movies-Google-Chrome-2020-08-07 (2).gif"/>
 </p>
 
 Movieflix is a project where users can read about movies,watch trailers
