@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="stylesheets/all.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Assets/fontawesome-free-5.13.0-web/css/all.css">
+  <title>Movies</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">MovieFLix</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Library</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <section class="header">
+    <div class="container">
+      <h1>Movies</h1>
+    </div>
+  </section>
+  <div class="container" id="all">
+    <div class="row">
+      <% var i=1; %>
+      <% for(var movie of movies){ %>
+      <div class="col-md-4 col-sm-6 col-12 xs-mb50">
+        <div class="card">
+          <a href="/show?id=<%=movie.id%>">
+          <div class="poster">
+            <img
+              src="<%= movie.imgcol %>"
+              class="card-img-top" />
+          </div>
+        </a>
+          <div class="movie-details">
+            <a href="/show?id=<%=movie.id%>"><h5><%= movie.title %></h5></a>
+            <span><%= movie.year %></span>
+          </div>
+          <div class="stars_rating movie<%= i%>">
+            <div class="stars-outer">
+              <div class="stars-inner">
+              </div>
+            </div>
+            <span class="rating"><%= movie.imdb_rating %>/10</span>
+          </div>
+        </div>
+      </div>
+      <% i++; }%>
+    </div>
+  </div>
+  <div class="container d-flex justify-content-center align-items-center" id="page1">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="/all?page=1">Previous</a></li>
+      <% for(var i=1;i<=8;i++){ %>
+      <li class="page-item"><a class="page-link" href="/all?page=<%=i%>"><%= i %></a></li>
+      <% }%>
+      <li class="page-item"><a class="page-link" href="/all?page=8">Next</a></li>
+    </ul>
+  </nav>
+  <script>
+    //ratings
+      const ratings = {
+      movie1: Number(`<%= movies[0].imdb_rating%>`),
+      movie2: Number(`<%= movies[1].imdb_rating%>`),
+      movie3: Number(`<%= movies[2].imdb_rating%>`),
+      movie4: Number(`<%= movies[3].imdb_rating%>`),
+      movie5: Number(`<%= movies[4].imdb_rating%>`),
+      movie6: Number(`<%= movies[5].imdb_rating%>`),
+      movie7: Number(`<%= movies[6].imdb_rating%>`),
+      movie8: Number(`<%= movies[7].imdb_rating%>`),
+      movie9: Number(`<%= movies[8].imdb_rating%>`)
+    }
+  
+    //Run "getRatings()" when DOM loads
+    document.addEventListener("DOMContentLoaded", getRatings);
+    //total stars
+    const starstotal = 5;
+    // Get Ratings
+    function getRatings(params) {
+      for (const rating in ratings) {
+        //Get Percentage.
+        const starPercentage = ((ratings[rating]/2) / starstotal) * 100;
+
+        //Round to nearest 10
+        const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`
+
+        //Set width of stars-inner to percentage.
+        document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded;
+      }
+    }
+  </script>
+ 
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+
+</body>
+
+</html>

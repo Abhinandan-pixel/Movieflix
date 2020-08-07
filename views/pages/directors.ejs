@@ -1,0 +1,37 @@
+<%- include('../partials/header.ejs') %>
+<section class="overlay-gradient">
+</section>
+<section class="movie-detail-intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="poster">
+                    <img
+                        src="<%=directors[0].image_url%>">
+                </div>
+                <div class="details">
+                    <h3 style="font-size: 3em;"><%= directors[0].name%></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="movie-detail-main">
+    <div class="container">
+        <div class="row d-flex">
+            <div class="col-12 col-lg-8">
+                <div class="inner">
+                    <div class="storyline">
+                        <h3 class="title" id="details">Mini-Bio</h3>
+                        <p class="plot">
+                            <%= directors[0].about%>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('../partials/footer.ejs') %>

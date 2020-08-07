@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Movies</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/show.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Assets/fontawesome-free-5.13.0-web/css/all.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">MovieFLix</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/all?page=1">Library</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+      <section class="overlay-gradient"> 
+      </section>
+      <section class="movie-detail-intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="poster">
+                        <img src="<%= movie[0].imgcol%>">
+                    </div>
+                    <div class="details">
+                        <h3><%= movie[0].title %></h3>
+                        <ul class="movie-subtext">
+                            <li><%= movie[0].runtime%> min</li>
+                            <li>
+                            <% for(var genre of genres){%>
+                            <%= genre.name %>
+                            ,
+                            <% }%>
+                            </li>
+                            <li><%= movie[0].year%></li>
+                        </ul>
+                        <a href="#details" class="btn btn-primary">Details</a>
+                        <div class="rating mt-2">
+                            <div class="stars_rating">
+                            <div class="stars-outer">
+                                <div class="stars-inner">
+                                </div>
+                              </div>
+                              <span class="rating"><%= movie[0].imdb_rating%>/10</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <section class="movie-detail-main"  id="details">
+        <div class="container">
+          <div class="row d-flex">
+            <div class="col-12 col-lg-8">
+              <div class="inner">
+                <div class="storyline"">
+                  <h3 class="title">Storyline</h3>
+                  <p class="plot"><%= movie[0].description%></p>
+                </div>
+                <hr>
+                <div class="cast">
+                  <h3 class="pb-4">Cast</h3>
+                  <div class="row">
+                    <div class="col-12 col-md-4 pb-4 pb-md-0">
+                      <a href="/show/actors?id=<%=movie[0].stars_id %>">
+                      <img src="<%= movie[0].image_url%>">
+                      </a>
+                      <h6><a href="/show/actors?id=<%=movie[0].stars_id %>" style="color: black;"><%= movie[0].name%></a></h6>
+                    </div>
+                    <div class="col-12 col-md-4 pb-4 pb-md-0">
+                      <a href="/show/actors?id=<%=movie[1].stars_id %>">
+                      <img src="<%= movie[1].image_url%>">
+                    </a>
+                      <h6><a href="/show/actors?id=<%=movie[1].stars_id %>"style="color: black;"><%= movie[1].name%></a></h6>
+                    </div>
+                    <div class="col-12 col-md-4 pb-4 pb-md-0">
+                      <a href="/show/actors?id=<%=movie[2].stars_id %>">
+                      <img src="<%= movie[2].image_url%>">
+                    </a>
+                      <h6><a href="/show/actors?id=<%=movie[2].stars_id %>"style="color: black;"><%= movie[2].name%></a></h6>
+                    </div>
+                  </div>  
+                </div>
+                <div class="row my-5 trailer">
+                  <div class="col-12">
+                    <iframe style="width: 100%; height: 100%;" src="<%= movie[0].trailer%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-4">
+              <div class="sidebar">
+                <aside class="sidebar-movie-details">
+                  <h3>Details</h3>
+                  <ul>
+                    <li>Release Date: <%= movie[0].year%></li>
+                    <li>Director:<a href="/show/directors?id=<%=directors[0].id %>" style="color: black;"> <%= directors[0].name%></a></li>
+                    <li>Imdb Rating: <%= movie[0].imdb_rating%></li>
+                    <li>Metacritic: <%= movie[0].metascore%>%</li>
+                    <li>Genre: 
+                      <% for(var genre of genres){%>
+                      <%=genre.name%>,
+                      <% }%>
+                    </li>
+                    <li>Certificate: <%=movie[0].certificate %></li>
+                  </ul>
+                </aside>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+      <script>
+        //ratings
+        const ratings = {
+          stars_rating: Number(`<%- movie[0].imdb_rating%>`)
+        }
+        //Run "getRatings()" when DOM loads
+        document.addEventListener("DOMContentLoaded", getRatings);
+        //total stars
+        const starstotal = 5;
+        // Get Ratings
+        function getRatings(params) {
+          for (const rating in ratings) {
+            //Get Percentage.
+            const starPercentage = ((ratings[rating]/2) / starstotal) * 100;
+    
+            //Round to nearest 10
+            const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`
+    
+            //Set width of stars-inner to percentage.
+            document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded;
+          }
+        }
+      </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+      jQuery($ => {
+        // The speed of the scroll in milliseconds
+        const speed = 1000;
+    
+        $('a[href*="#"]')
+          .filter((i, a) => a.getAttribute('href').startsWith('#') || a.href.startsWith(`${location.href}#`))
+          .unbind('click.smoothScroll')
+          .bind('click.smoothScroll', event => {
+            const targetId = event.currentTarget.getAttribute('href').split('#')[1];
+            const targetElement = document.getElementById(targetId);
+    
+            if (targetElement) {
+              event.preventDefault();
+              $('html, body').animate({ scrollTop: $(targetElement).offset().top }, speed);
+            }
+          });
+      });
+    </script>
+     <script>
+      $(function() {
+          $(document).scroll(function() {
+              var $nav=$("#mainNavbar");
+              $nav.toggleClass("scroll",$(this).scrollTop() > $nav.height());
+          });
+      });
+   </script>
+   
+</body>
+
+</html>

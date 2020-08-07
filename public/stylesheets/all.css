@@ -1,0 +1,222 @@
+body{
+    font-family: 'Quicksand', sans-serif;
+}
+section{
+    position: relative;
+}
+.header{
+    background-image: url("https://klbtheme.com/movify/wp-content/uploads/2018/04/movie-collection.jpg");
+    width: 100%;
+    padding: 60px 0;
+    margin: 0;
+    max-width: none;
+    height: 13.5rem;
+    font-weight: 500;
+    
+    color: aliceblue;
+}
+.header .container{
+    position: relative;
+    z-index: 10;
+}
+.header::before{
+    position: absolute;
+    content: "";
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: .7;
+}
+.header::after{
+    position: absolute;
+    content: '';
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .6;
+    background: -webkit-gradient(linear, left top, left bottom, from(#a11f3c), to(#9352b3));
+    background: -webkit-linear-gradient(bottom, #9352b3 0%, #a11f3c 100%);
+    background: -o-linear-gradient(bottom, #9352b3 0%, #a11f3c 100%);
+    background: linear-gradient(to bottom, #a11f3c 0%, #9352b3 100%);
+}
+.header h1{
+    font-size: 4.5rem;
+}
+#all{
+    margin-top:80px !important;
+    margin-bottom: 10px !important;
+}
+.xs-mb50{
+    margin-bottom: 45px;
+}
+.card {
+    position: relative;
+    font-family: 'Quicksand', sans-serif;
+    border: 0;
+  }
+.card-img-top{
+    border-radius: 0;
+}
+
+  .card .poster::before {
+    z-index: 0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#a11f3c), to(#9352b3));
+    background: -webkit-linear-gradient(bottom, #9352b3 0%, #a11f3c 100%);
+    background: -o-linear-gradient(bottom, #9352b3 0%, #a11f3c 100%);
+    background: linear-gradient(to bottom, #a11f3c 0%, #9352b3 100%);
+    content: "";
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    opacity: 0;
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -ms-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    transition: all .4s ease;
+  }
+
+  .card .poster::after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    z-index: 9;
+    background: -webkit-linear-gradient(bottom, rgba(35, 35, 37, 0.9) 0%, rgba(35, 35, 37, 0.5) 35%, rgba(22, 22, 23, 0) 60%, rgba(0, 0, 0, 0) 100%);
+    background: -o-linear-gradient(bottom, rgba(35, 35, 37, 0.9) 0%, rgba(35, 35, 37, 0.5) 35%, rgba(22, 22, 23, 0) 60%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(to top, rgba(35, 35, 37, 0.9) 0%, rgba(35, 35, 37, 0.5) 35%, rgba(22, 22, 23, 0) 60%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  .card:hover .poster::before {
+    z-index: 8;
+    opacity: 0.5;
+  }
+
+  .movie-details {
+    position: relative;
+    z-index: 30;
+    color: #fff;
+    text-align: center;
+    font-weight: 300;
+    bottom: 0px;
+    margin-top: -63px;
+    left: 0%;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    opacity: 0;
+    visibility: hidden;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .card:hover .movie-details {
+    opacity: 1;
+    visibility: visible;
+    bottom: 33px;
+    margin-top: -63px;
+    left: 0%;
+  }
+
+  .movie-details h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 24px;
+    padding-top: 1%;
+    position: relative;
+    bottom: -9px;
+    font-weight: 600;
+  }
+
+  .stars_rating {
+    position: absolute;
+    top: 0%;
+    left: 20%;
+    right: 20%;
+    text-align: center;
+    z-index: 25;
+    margin-bottom: -27px;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .card:hover .stars_rating {
+    opacity: 1;
+    visibility: visible;
+    top: 9%;
+  }
+
+  .stars_rating .stars-outer {
+    position: relative;
+    display: inline-block;
+  }
+
+  .stars_rating .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+  }
+
+  .stars_rating .stars-outer::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: 'Font Awesome 5 free';
+    font-weight: 900;
+    color: #ccc;
+    opacity: 0.5;
+  }
+
+  .stars_rating .stars-inner::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: 'Font Awesome 5 free';
+    font-weight: 900;
+    color: #fcba03;
+  }
+
+  .stars_rating .rating {
+    display: block;
+    color: #fff;
+    font-weight: 300;
+    font-size: 17px;
+  }
+
+
+@media (max-width:480px){
+    .header h1{
+        padding-left: 20px;
+    }
+}
+a{
+  text-decoration: none !important;
+  color: #fff;
+}
+a:hover{
+  color: #9352b3 !important;
+}
