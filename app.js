@@ -14,7 +14,7 @@ app.use(express.static(__dirname + "/public"))
 var pool = mysql.createPool({
     host     : '127.0.0.1',
     user     : 'root',
-    password : 'Sarahhyland24',
+    password : 'Yourpassword',
     database : 'mflix',
     port: 3306,
     insecureAuth: true
